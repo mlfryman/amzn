@@ -6,17 +6,19 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Template
+      a.navbar-brand(href='/') Amzn
 
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
         if user
+          li.divider
+          li: a(href='/profile') #{user.email}
           li
             form.navbar-form(method='post', action='/logout')
               .form-group
                 input(type='hidden', name='_method', value='delete')
-                button.btn.btn-danger= user.email
+                button.btn.btn-warning.btn-md Logout
         else
-          li: a(href='/register') Register
-          li: a(href='/login') Login
+          li: a(href='/register'): i.fa.fa-user.fa-lg &nbsp; Register
+          li: a(href='/login'): i.fa.fa-rocket.fa-lg &nbsp; Login
 
