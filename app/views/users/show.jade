@@ -1,0 +1,24 @@
+extends ../shared/template
+block content
+  .container
+    #banner.page-header
+      .row
+        .col-xs-12
+          h1 Profile
+    .row
+      .col-xs-5
+        .photo
+          img(class='pic-show',src=user.photo)
+    .row
+      .col-xs-5
+        .panel.panel-primary
+          .panel-heading
+            h3.panel-title: a(href='/profile/edit'): i.fa.fa-edit &nbsp; Edit Profile
+          .panel-body
+            ul.list-group
+              li.list-group-item: i.fa.fa-envelope &nbsp;
+                | Email:&nbsp
+                a(href='mailto:#{user.email}?Subject=Email%20Message%20from%20Amzn', target='_top')= user.email
+              li.list-group-item
+                | Age:&nbsp
+                | #{user.age}

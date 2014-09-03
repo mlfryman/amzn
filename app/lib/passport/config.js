@@ -1,7 +1,7 @@
 'use strict';
 
 var local = require('./local'),
-    // twitter = require('./twitter'),
+    twitter = require('./twitter'),
     // google = require('./google'),
     // facebook = require('./facebook'),
     // github = require('./github'),
@@ -10,7 +10,7 @@ var local = require('./local'),
 
 module.exports = function(passport, app){
   passport.use(local);
-  // passport.use(twitter);
+  passport.use(twitter);
   // passport.use(google);
   // passport.use(facebook);
   // passport.use(github);

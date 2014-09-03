@@ -1,1 +1,1 @@
-body{background-image:url(/img/light_grey.png)}
+body{background-image:url(/img/light_grey.png)}.photo{background-size:cover;display:inline-block;width:200px;height:200px;margin:10px 10px 0px 0px}.pic-show{width:200px;box-shadow:-2px 4px 21px 0 rgba(0,0,0,0.75);transition:1s ease-in-out}.pic-show:hover{width:400px;box-shadow:-2px 4px 21px 0 rgba(0,0,0,0.75);border-radius:6px;transition:1s ease-in-out}

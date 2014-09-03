@@ -31,10 +31,17 @@ module.exports = function(app, express){
   app.get('/register', users.new);
   app.post('/register', users.create);
   app.get('/login', users.login);
-  app.post('/login', passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login', successFlash:'Welcome!', failureFlash:'Sorry, your email or password was incorrect.'})); // req is not available here, so cannot use username in message
+  app.post('/login', passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful local login!', failureFlash:'Error during local login.'})); // req is not available here, so cannot use username in message
+  app.get('/auth/twitter', passport.authenticate('twitter'));
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successfully logged in via Twitter!', failureFlash:'Error during login.'}));
+
+
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);
+  app.get('/profile', users.show);
+  app.get('/profile/edit', users.edit);
+  app.put('/profile', users.update);
 
   console.log('Express: Routes Loaded');
 };
