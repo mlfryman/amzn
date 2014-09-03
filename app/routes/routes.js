@@ -33,8 +33,9 @@ module.exports = function(app, express){
   app.get('/login', users.login);
   app.post('/login', passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful local login!', failureFlash:'Error during local login.'})); // req is not available here, so cannot use username in message
   app.get('/auth/twitter', passport.authenticate('twitter'));
-  app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successfully logged in via Twitter!', failureFlash:'Error during login.'}));
-
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successfully logged in via Github!', failureFlash:'Error during login.'}));
+  app.get('/auth/github', passport.authenticate('github'));
+  app.get('/auth/github/callback', passport.authenticate('github', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successfully logged in via Github!', failureFlash:'Error during login.'}));
 
 
   app.use(security.bounce);
@@ -45,4 +46,3 @@ module.exports = function(app, express){
 
   console.log('Express: Routes Loaded');
 };
-
