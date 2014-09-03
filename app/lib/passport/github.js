@@ -5,9 +5,9 @@ var GithubStrategy = require('passport-github').Strategy,
     config         = require('../../../config'),
     github         = new GithubStrategy(
                      {
-                       clientID: config.github.clientId,
+                       clientID: config.github.clientID,
                        clientSecret: config.github.clientSecret,
-                       callbackURL: config.github.callbackUrl
+                       callbackURL: config.github.callbackURL
                      },
                      User.githubAuthenticate);
 module.exports = github;

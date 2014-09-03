@@ -12,7 +12,7 @@
       ul.nav.navbar-nav.navbar-right
         if user
           li.divider
-          li: a(href='/profile'): i.fa.fa-user &nbsp; #{user.email} #{user.username}
+          li: a(href='/profile'): i.fa.fa-user &nbsp; #{user.email || user.username || user.displayName}
           li
             form.navbar-form(method='post', action='/logout')
               .form-group
@@ -23,4 +23,5 @@
           li: a(href='/login'): i.fa.fa-rocket.fa-lg &nbsp; Login
           li: a(href='/auth/twitter'): i.fa.fa-twitter.fa-lg &nbsp; Twitter
           li: a(href='/auth/github'): i.fa.fa-github.fa-lg &nbsp; Github
+          li: a(href='/auth/google'): i.fa.fa-google.fa-lg &nbsp; Google
 

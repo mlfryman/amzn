@@ -7,7 +7,7 @@ var TwitterStrategy = require('passport-twitter').Strategy,
                       {
                         consumerKey: config.twitter.apiKey,
                         consumerSecret: config.twitter.apiSecret,
-                        callbackURL: config.twitter.callbackUrl
+                        callbackURL: config.twitter.callbackURL
                       },
                       User.twitterAuthenticate);
 module.exports = twitter;

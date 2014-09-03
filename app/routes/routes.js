@@ -33,10 +33,11 @@ module.exports = function(app, express){
   app.get('/login', users.login);
   app.post('/login', passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful local login!', failureFlash:'Error during local login.'})); // req is not available here, so cannot use username in message
   app.get('/auth/twitter', passport.authenticate('twitter'));
-  app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successfully logged in via Github!', failureFlash:'Error during login.'}));
   app.get('/auth/github', passport.authenticate('github'));
-  app.get('/auth/github/callback', passport.authenticate('github', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successfully logged in via Github!', failureFlash:'Error during login.'}));
-
+  app.get('/auth/google', passport.authenticate('google',  {scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.profile.emails.read']}));
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Twitter Login!', failureFlash:'Error during Twitter login.'}));
+  app.get('/auth/github/callback', passport.authenticate('github', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Github Login!', failureFlash:'Error during Github login.'}));
+  app.get('/auth/google/callback',  passport.authenticate('google',  {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Google Login!', failureFlash:'Error during Google login.'}));
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);
