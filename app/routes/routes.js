@@ -12,6 +12,8 @@ var morgan         = require('morgan'),
     security       = require('../lib/security'),
     debug          = require('../lib/debug'),
     home           = require('../controllers/home'),
+    cart           = require('../controllers/cart'),
+    products       = require('../controllers/products'),
     users          = require('../controllers/users');
 
 module.exports = function(app, express){
@@ -39,13 +41,18 @@ module.exports = function(app, express){
   app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Twitter Login!', failureFlash:'Error during Twitter login.'}));
   app.get('/auth/github/callback', passport.authenticate('github', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Github Login!', failureFlash:'Error during Github login.'}));
   app.get('/auth/google/callback',  passport.authenticate('google',  {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Google Login!', failureFlash:'Error during Google login.'}));
-  app.get('/auth/facebool/callback', passport.authenticate('facebook', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Facebook Login!', failureFlash:'Error during Facebook login.'}));
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Facebook Login!', failureFlash:'Error during Facebook login.'}));
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);
   app.get('/profile', users.show);
   app.get('/profile/edit', users.edit);
   app.put('/profile', users.update);
+  app.get('/products', products.index);
+  app.post('/cart', cart.add);
+  app.get('/cart', cart.index);
+  app.delete('/cart', cart.destroy);
+  app.post('/charge', cart.purchase);
 
   console.log('Express: Routes Loaded');
 };

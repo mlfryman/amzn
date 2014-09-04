@@ -26,4 +26,9 @@ config.facebook = {
   callbackURL  : 'http://mlfryman-vm.com:3333/auth/facebook/callback'
 };
 
+config.stripe = {
+  publishKey : 'pk_test_cgP4N9OGu9XbQ4y0oVrhFkWk',
+  secretKey  : process.env.STRIPE_SECRET
+};
+
 module.exports = config;

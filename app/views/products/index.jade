@@ -1,0 +1,25 @@
+extends ../shared/template
+block content
+  .container
+    #banner.page-header
+      .row
+        .col-xs-12
+          h1#header Shop
+    .row
+      .col-xs-6
+        table#products.table.table-bordered
+          thead
+            th Name
+            th Photo
+            th Price
+          tbody
+            each product in products
+              tr
+                td
+                  form(method='post', action='/cart')
+                    input(type='hidden', name='productId', value=product._id)
+                    button.btn.btn-sm.btn-primary(type='submit')= product.name
+                td: img.product-img.thumbnail(src='#{product.photo}')
+                td $#{product.price.toFixed(2)}
+      .col-xs-6
+block scripts
