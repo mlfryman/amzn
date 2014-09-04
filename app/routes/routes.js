@@ -35,9 +35,11 @@ module.exports = function(app, express){
   app.get('/auth/twitter', passport.authenticate('twitter'));
   app.get('/auth/github', passport.authenticate('github'));
   app.get('/auth/google', passport.authenticate('google',  {scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.profile.emails.read']}));
+  app.get('/auth/facebook',          passport.authenticate('facebook'));
   app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Twitter Login!', failureFlash:'Error during Twitter login.'}));
   app.get('/auth/github/callback', passport.authenticate('github', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Github Login!', failureFlash:'Error during Github login.'}));
   app.get('/auth/google/callback',  passport.authenticate('google',  {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Google Login!', failureFlash:'Error during Google login.'}));
+  app.get('/auth/facebool/callback', passport.authenticate('facebook', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful Facebook Login!', failureFlash:'Error during Facebook login.'}));
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);

@@ -46,18 +46,26 @@ User.twitterAuthenticate = function(token, secret, twitter, cb){
   });
 };
 
-User.githubAuthenticate = function(token, secret, github, cb){
-  User.collection.findOne({githubId:github.id}, function(err, user){
-    if(user){return cb (null, user);}
-    user = {githubId:github.id, username:github.username, displayName:github.displayName, type:'github'};
+User.githubAuthenticate = function(accessToken, refreshToken, profile, cb){
+  User.collection.findOne({githubId:profile.id}, function(err, user){
+    if(user){return cb(err, user);}
+    user = {githubId:profile.id, username:profile.username, displayName:profile.displayName, type:'github'};
     User.collection.save(user, cb);
   });
 };
 
-User.googleAuthenticate = function(token, secret, google, cb){
-  User.collection.findOne({googleId:google.id}, function(err, user){
-    if(user){return cb (null, user);}
-    user = {googleId:google.id, displayName:google.displayName, type:'google'};
+User.googleAuthenticate = function(accessToken, refreshToken, profile, cb){
+  User.collection.findOne({googleId:profile.id}, function(err, user){
+    if(user){return cb(err, user);}
+    user = {googleId:profile.id, displayName:profile.displayName, type:'google'};
+    User.collection.save(user, cb);
+  });
+};
+
+User.facebookAuthenticate = function(accessToken, refreshToken, profile, cb){
+  User.collection.findOne({facebookId:profile.id}, function(err, user){
+    if(user){return cb(err, user);}
+    user = {facebookId:profile.id, displayName:profile.displayName, type:'facebook'};
     User.collection.save(user, cb);
   });
 };

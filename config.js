@@ -17,7 +17,13 @@ config.github = {
 config.google = {
   clientID      : '5146807778-g8tb77in9d4o0t7k8csaogpgno28huh1.apps.googleusercontent.com',
   clientSecret  : process.env.GOOGLE_SECRET,
-  callbackURL  : 'http://mlfryman-vm.com:3333/auth/google/callback'
+  callbackURL   : 'http://mlfryman-vm.com:3333/auth/google/callback'
+};
+
+config.facebook = {
+  clientID     : '1468790620050662',
+  clientSecret : process.env.FACEBOOK_SECRET,
+  callbackURL  : 'http://mlfryman-vm.com:3333/auth/facebook/callback'
 };
 
 module.exports = config;
